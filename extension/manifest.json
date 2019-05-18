@@ -1,0 +1,35 @@
+{
+    "manifest_version": 2,
+    "name": "scryfall-stream-extension",
+    "short_name": "Scryfall-Stream",
+    "description": "",
+    "version": "1.0.0",
+    "author": "Brendan Hagan (haganbmj)",
+    "icons": {
+        "48": "icon/icon48.png"
+    },
+    "content_scripts": [{
+        "matches": ["*://scryfall.com/**"],
+        "js": ["scryfall-stream-extension.client.js"],
+        "css": ["scryfall-stream-extension.client.css"],
+        "run_at": "document_idle"
+    }],
+    "browser_action": {
+        "default_icon": {
+            "48": "icon/icon48.png"
+        },
+        "default_title": "Show panel",
+        "browser_style": true,
+        "default_popup": "options.html"
+    },
+
+    "options_ui": {
+      "page": "options.html",
+      "chrome_style": true
+    },
+    "permissions": [
+        "storage",
+        "http://localhost/*"
+    ],
+    "content_security_policy": "script-src 'self' http://localhost/*; object-src 'self'"
+}

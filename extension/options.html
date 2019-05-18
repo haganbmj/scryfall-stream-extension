@@ -1,0 +1,35 @@
+<html>
+    <head></head>
+    <body>
+        <div id="options">
+            <form>
+                <label>Room<input type="text" id="room"></label>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        window.browser = (function () {
+            return window.msBrowser || window.browser || window.chrome;
+        })();
+
+        function saveOptions(e) {
+            e.preventDefault();
+            browser.storage.sync.set({
+                room: document.querySelector("#room").value
+            });
+        }
+
+        function restoreOptions() {
+            function setCurrentChoice(data) {
+                document.querySelector("#room").value = data.room || "";
+            }
+
+            var getting = browser.storage.sync.get("room");
+            getting.then(setCurrentChoice, console.error);
+        }
+
+        document.addEventListener("DOMContentLoaded", restoreOptions);
+        document.querySelector("form").addEventListener("submit", saveOptions);
+    </script>
+</html>

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js" integrity="sha256-RtMTraB5gGlLER0FkKBcaXCmZCQCxkKS/dXm7MSEoEY=" crossorigin="anonymous"></script>
+        <style>
+            #card {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="card" src="">
+    </body>
+    <script>
+        const cardElement = document.querySelector('#card');
+        const socket = io.connect();
+
+        socket.on('connect', data => {
+            socket.emit('join', 'test');
+        });
+
+        socket.on('url', data => {
+            console.log(data);
+            cardElement.src = data;
+        });
+    </script>
+</html>
