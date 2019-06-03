@@ -9,6 +9,10 @@
         </div>
     </body>
     <script>
+        chrome.storage.local.set({
+    'room': 'options'
+});
+
         window.browser = (function () {
             return window.msBrowser || window.browser || window.chrome;
         })();

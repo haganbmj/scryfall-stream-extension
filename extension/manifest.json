@@ -9,9 +9,15 @@
         "48": "icon/icon48.png"
     },
     "content_scripts": [{
-        "matches": ["*://scryfall.com/**"],
-        "js": ["scryfall-stream-extension.client.js"],
-        "css": ["scryfall-stream-extension.client.css"],
+        "matches": [
+            "*://scryfall.com/**"
+        ],
+        "js": [
+            "scryfall-stream-extension.client.js"
+        ],
+        "css": [
+            "scryfall-stream-extension.client.css"
+        ],
         "run_at": "document_idle"
     }],
     "browser_action": {
@@ -24,12 +30,13 @@
     },
 
     "options_ui": {
-      "page": "options.html",
-      "chrome_style": true
+        "page": "options.html",
+        "chrome_style": true
     },
     "permissions": [
         "storage",
-        "http://localhost/*"
+        "http://localhost/*",
+        "https://streamsgood.com/*"
     ],
     "content_security_policy": "script-src 'self' http://localhost/*; object-src 'self'"
 }
