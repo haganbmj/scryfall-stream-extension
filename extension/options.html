@@ -1,39 +1,64 @@
 <html>
-    <head></head>
-    <body>
-        <div id="options">
-            <form>
-                <label>Room<input type="text" id="room"></label>
-                <button type="submit">Save</button>
-            </form>
-        </div>
-    </body>
-    <script>
-        chrome.storage.local.set({
-    'room': 'options'
-});
-
-        window.browser = (function () {
-            return window.msBrowser || window.browser || window.chrome;
-        })();
-
-        function saveOptions(e) {
-            e.preventDefault();
-            browser.storage.sync.set({
-                room: document.querySelector("#room").value
-            });
-        }
-
-        function restoreOptions() {
-            function setCurrentChoice(data) {
-                document.querySelector("#room").value = data.room || "";
+    <head>
+        <style>
+            #options {
+                min-width: 200px;
             }
 
-            var getting = browser.storage.sync.get("room");
-            getting.then(setCurrentChoice, console.error);
-        }
+            .setting {
+                padding-bottom: 1em;
+            }
 
-        document.addEventListener("DOMContentLoaded", restoreOptions);
-        document.querySelector("form").addEventListener("submit", saveOptions);
-    </script>
+            #image-url {
+                font-size: 1.25em;
+            }
+
+            hr {
+                margin: 1em 0;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                width: 100%;
+            }
+
+            input:invalid, input:focus:invalid {
+                border: 2px solid red;
+                background: rgba(255, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Scryfall Stream Extension</h1>
+        <p>Scryfall pages will recheck these settings every 5 seconds.</p>
+
+        <hr />
+
+        <div id="options">
+            <form>
+                <div class="setting">
+                    <label for="room">Room</label>
+                    <input type="text" pattern="^[A-Za-z0-9 ]+$" id="room" required>
+                </div>
+                <div class="setting" style="display:none">
+                    <label for="server">Server</label>
+                    <input type="text" id="server">
+                </div>
+
+                <button id="submit-options" type="submit">Save</button>
+                <button id="generate-room" type="button">Random Room</button>
+            </form>
+        </div>
+
+        <hr />
+
+        <div class="details">
+            <p>View the actively selected card at the following url.</p>
+            <a id="image-url" href="" target="_blank">Room URL</a>
+        </div>
+    </body>
+    <script src="options.js"></script>
 </html>

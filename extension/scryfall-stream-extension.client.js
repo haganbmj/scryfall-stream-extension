@@ -2,25 +2,30 @@ window.browser = (function () {
     return window.msBrowser || window.browser || window.chrome;
 })();
 
-// chrome.storage.local.set({
-//     'room': 'test'
-// });
+const streamSettings = {
+};
 
-chrome.storage.local.get('room', value => {
-    console.log(value);
-});
+function loadSettings() {
+    window.browser.storage.local.get('room', data => {
+        console.log(`room: ${data.room}`);
+        streamSettings.room = data.room;
+    });
 
-const images = document.querySelectorAll(`img[src*="img.scryfall.com/cards/"], img[data-src*="img.scryfall.com/cards/"]`);
+    window.browser.storage.local.get('server', data => {
+        console.log(`server: ${data.server}`);
+        streamSettings.server = data.server;
+    });
+}
 
 function changeImage(url) {
-    fetch('http://localhost:8080/set', {
+    fetch(`${streamSettings.server}/set`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            room: 'test',
-            'url': url
+            room: streamSettings.room,
+            url: url
         })
     });
 }
@@ -38,9 +43,15 @@ function createButton(element, url) {
     element.insertAdjacentElement('beforebegin', button);
 }
 
+loadSettings();
+
+setInterval(loadSettings, 5000);
+
 const showScryfallStream = url => {
     scryfallStreamButton.style.display = 'block';
 };
+
+const images = document.querySelectorAll(`img[src*="img.scryfall.com/cards/"], img[data-src*="img.scryfall.com/cards/"]`);
 
 images.forEach(element => {
     let jpgUrl = element.src;

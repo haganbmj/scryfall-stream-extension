@@ -5,6 +5,11 @@
     "description": "",
     "version": "1.0.0",
     "author": "Brendan Hagan (haganbmj)",
+    "applications": {
+        "gecko": {
+            "id": "scryfall-stream-extension"
+        }
+    },
     "icons": {
         "48": "icon/icon48.png"
     },

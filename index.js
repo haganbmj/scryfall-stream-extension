@@ -1,4 +1,5 @@
 const express = require('express');
+const mustacheExpress = require('mustache-express');
 const morgan = require('morgan');
 const winston = require('winston');
 
@@ -23,6 +24,10 @@ const app = express();
 app.use(express.json());
 app.use(morgan('combined'));
 
+app.engine('html', mustacheExpress());
+app.set('view engine', 'html');
+app.set('views', './views');
+
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
@@ -30,7 +35,7 @@ const rooms = {};
 
 function emitToRoom(room) {
     if (!rooms[room]) {
-        rooms[room] = 'https://img.scryfall.com/cards/png/en/tmp/214.png';
+        rooms[room] = 'https://img.scryfall.com/cards/png/front/6/3/63a31de0-d764-4ff6-a85f-027e1e58d86c.png';
     }
 
     log.debug('Emitting. %j', { room: room, url: rooms[room] });
@@ -60,6 +65,11 @@ app.post('/set', (req, res) => {
     rooms[room] = url;
     emitToRoom(room);
     return res.status(200).json({"message": "ok"});
+});
+
+app.get('/room/:id', (req, res) => {
+    const { id } = req.params;
+    res.render('room', { id });
 });
 
 io.on('connection', (client) => { 
