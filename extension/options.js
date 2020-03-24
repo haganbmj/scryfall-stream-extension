@@ -30,7 +30,7 @@ function saveOptions(e) {
 }
 
 function setImageUrl() {
-    document.querySelector('#image-url').href = `${currentSettings.server}/room/${encodeURIComponent(currentSettings.room)}`;
+    document.querySelector('#image-url').href = `${currentSettings.server}/room/${encodeURIComponent(currentSettings.room)}?layer-name=Scryfall&layer-width=745&layer-height=1040`;
 }
 
 function restoreOptions() {

@@ -20,16 +20,16 @@
                 border: 2px solid red;
                 background: rgba(255, 0, 0, 0.1);
             } */
+
+            .footer {
+                text-align: center;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <h4>Scryfall Stream Extension</h4>
-            <p>Scryfall pages will recheck these settings every 5 seconds. Set a room identifier that is unique and private if necessary, anyone with the identifier will be able to set and view images.</p>
-    
-            <div class="details">
-                <p>View the actively selected card <a id="image-url" href="" target="_blank">HERE</a>.</p>
-            </div>
+            <p>Scryfall pages will recheck these settings every 5 seconds. Set a room identifier that is unique - and private if necessary, as anyone with the identifier will be able to set and view images.</p>
 
             <div id="options">
                 <form>
@@ -42,12 +42,16 @@
                         <label for="server">Server</label>
                         <input type="text" id="server">
                     </div>
-                    <button id="submit-options" class="button-primary u-full-width" type="submit">Save</button>
+                    <button id="submit-options" class="button-primary u-full-width" type="submit">Save Changes</button>
                 </form>
             </div>
 
+            <div class="details">
+                <p>View the active card <a id="image-url" href="" target="_blank">HERE</a>, or drag the link into OBS v25.0.0 (or higher) to automatically add a preconfigured source!</p>
+            </div>
+
             <div class="footer">
-                <a href="https://scryfall.com">Additional Instructions</a>
+                <a href="https://streamsgood.com">Additional Instructions</a>
             </div>
         </div>
     </body>

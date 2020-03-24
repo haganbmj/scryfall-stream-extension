@@ -1,6 +1,13 @@
 <html>
     <head>
+        <title>Scryfall Stream Extension - StreamsGood</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <meta name="author" content="haganbmj">
+        <meta name="description" content="Scryfall Stream Extension">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" type="text/css" href="/styles/normalize.css">
         <link rel="stylesheet" type="text/css" href="/styles/skeleton.css">
 
@@ -16,6 +23,10 @@
 
             #extension > div {
                 text-align: center;
+            }
+
+            .section {
+                margin-top: 3em;
             }
 
             #instructions > .row {
@@ -36,14 +47,21 @@
                 </div>
             </div>
 
-            <div id="instructions" class="row">
+            <div id="about" class="section row">
+                <h2>About</h2>
                 <div class="row">
                     <p>Scryfall Stream Extension provides a "Stream" button on Scryfall search result pages to allow you to change an on-stream card graphic with no special equipment or setup.</p>
+                    <p><i>Alternate uses can include sharing card imagery while playing Magic via teleconference during a hypothetical pandemic. Just have both players open up the card display page.</i></p>
                 </div>
                 <div class="row">
                     <img class="u-max-full-width" src="/img/scryfall-stream-browser-extension.png">
                 </div>
+            </div>
+
+            <div id="instructions" class="section row">
+                <h2>Instructions</h2>
                 <div class="row">
+                    <p>The extension uses the concept of "rooms" to allow multiple people/browsers to control the same image output. Set a room identifier, either uniquely or using a shared room.</p>
                     <p>Simply add a Browser Source to your streaming client of choice with the url provided by the extension.</p>
                     <p>The webpage will automatically size to fit the size of your source, so try to match a standard card resolution such as <b>745x1040 (Width: 745px, Height: 1040px)</b>. The extension uses the highest resolution offering Scryfall has, so it should scale well for common stream resolutions. Do note that some Scryfall images differ in size, but any stretching should be minor. Full resolution images are not available for some foreign languages.</p>
                 </div>
@@ -55,6 +73,15 @@
                     <div class="six columns">
                         <img class="u-max-full-width" src="/img/scryfall-stream-obs.png">
                     </div>
+                </div>
+            </div>
+
+            <div id="development" class="section row">
+                <h2>Development</h2>
+                <div class="row">
+                    <p>This extension is backed by a cheaply hosted Node server using in memory storage because I'm too cheap to pay for a store. If it crashes or I push a deployment it will wipe out all active imagery, should this develop into something more then I'll reapproach that limitation.</p>
+                    <p>Source is available on <a href="https://github.com/haganbmj/scryfall-stream-extension">Github</a>, just don't read too closely.</p>
+                    <p>Note that this is not in any way affiliatd with Scryfall.com.</p>
                 </div>
             </div>
         </div>
