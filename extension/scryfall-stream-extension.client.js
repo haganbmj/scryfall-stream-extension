@@ -1,18 +1,22 @@
-window.browser = (function () {
-    return window.msBrowser || window.browser || window.chrome;
-})();
+// window.browser = (function () {
+//     return window.msBrowser || window.browser || window.chrome;
+// })();
+
+// if (typeof browser === 'undefined') {
+//     browser = window.browser;
+// }
 
 const streamSettings = {
 };
 
 function loadSettings() {
-    window.browser.storage.local.get('room', data => {
-        console.log(`room: ${data.room}`);
+    browser.storage.local.get('room').then(data => {
+        // console.log(`room: ${data.room}`);
         streamSettings.room = data.room;
     });
 
-    window.browser.storage.local.get('server', data => {
-        console.log(`server: ${data.server}`);
+    browser.storage.local.get('server').then(data => {
+        // console.log(`server: ${data.server}`);
         streamSettings.server = data.server;
     });
 }

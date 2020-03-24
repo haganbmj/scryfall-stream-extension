@@ -1,6 +1,10 @@
-window.browser = (function () {
-    return window.msBrowser || window.browser || window.chrome;
-})();
+// window.browser = (function () {
+//     return window.msBrowser || window.browser || window.chrome;
+// })();
+
+// if (typeof browser === 'undefined') {
+//     browser = window.browser;
+// }
 
 const defaultSettings = {
     room: `${Math.random().toString(36).slice(7)}`,
@@ -16,7 +20,7 @@ function saveOptions(e) {
         e.preventDefault();
     }
     
-    window.browser.storage.local.set({
+    browser.storage.local.set({
         room: document.querySelector('#room').value,
         server: document.querySelector('#server').value
     });
@@ -31,10 +35,10 @@ function setImageUrl() {
 
 function restoreOptions() {
     try {
-        window.browser.storage.local.get('room', data => {
+        browser.storage.local.get('room').then(data => {
             if (typeof data.room !== 'string' || data.room.trim() === '') {
                 data.room = defaultSettings.room;
-                window.browser.storage.local.set({
+                browser.storage.local.set({
                     room: data.room
                 });
             }
@@ -44,10 +48,10 @@ function restoreOptions() {
             setImageUrl();
         });
 
-        window.browser.storage.local.get('server', data => {
+        browser.storage.local.get('server').then(data => {
             if (typeof data.server !== 'string' || data.server.trim() === '') {
                 data.server = defaultSettings.server;
-                window.browser.storage.local.set({
+                browser.storage.local.set({
                     server: data.server
                 });
             }

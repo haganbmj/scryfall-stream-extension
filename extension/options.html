@@ -1,64 +1,56 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/assets/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/assets/skeleton.css">
+
         <style>
-            #options {
-                min-width: 200px;
-            }
-
-            .setting {
+            body {
+                /* width: 30em; */
+                padding-top: 1em;
                 padding-bottom: 1em;
+                min-width: 20em;
+                width: 20em;
+                height: auto;
+                overflow-y: hidden;
+                overflow-x: hidden;
             }
 
-            #image-url {
-                font-size: 1.25em;
-            }
-
-            hr {
-                margin: 1em 0;
-            }
-
-            label {
-                font-weight: bold;
-            }
-
-            input {
-                width: 100%;
-            }
-
-            input:invalid, input:focus:invalid {
+            /* input:invalid, input:focus:invalid {
                 border: 2px solid red;
                 background: rgba(255, 0, 0, 0.1);
-            }
+            } */
         </style>
     </head>
     <body>
-        <h1>Scryfall Stream Extension</h1>
-        <p>Scryfall pages will recheck these settings every 5 seconds.</p>
+        <div class="container">
+            <h4>Scryfall Stream Extension</h4>
+            <p>Scryfall pages will recheck these settings every 5 seconds. Set a room identifier that is unique and private if necessary, anyone with the identifier will be able to set and view images.</p>
+    
+            <div class="details">
+                <p>View the actively selected card <a id="image-url" href="" target="_blank">HERE</a>.</p>
+            </div>
 
-        <hr />
+            <div id="options">
+                <form>
+                    <div class="row">
+                        <label for="room">Room</label>
+                        <input type="text" pattern="^[A-Za-z0-9 ]+$" id="room" class="u-full-width" required>
+                        <button id="generate-room" class="u-full-width" type="button">Random Room</button>
+                    </div>
+                    <div class="row" style="display:none">
+                        <label for="server">Server</label>
+                        <input type="text" id="server">
+                    </div>
+                    <button id="submit-options" class="button-primary u-full-width" type="submit">Save</button>
+                </form>
+            </div>
 
-        <div id="options">
-            <form>
-                <div class="setting">
-                    <label for="room">Room</label>
-                    <input type="text" pattern="^[A-Za-z0-9 ]+$" id="room" required>
-                </div>
-                <div class="setting" style="display:none">
-                    <label for="server">Server</label>
-                    <input type="text" id="server">
-                </div>
-
-                <button id="submit-options" type="submit">Save</button>
-                <button id="generate-room" type="button">Random Room</button>
-            </form>
-        </div>
-
-        <hr />
-
-        <div class="details">
-            <p>View the actively selected card at the following url.</p>
-            <a id="image-url" href="" target="_blank">Room URL</a>
+            <div class="footer">
+                <a href="https://scryfall.com">Additional Instructions</a>
+            </div>
         </div>
     </body>
+    <script src="browser-polyfill.min.js"></script>
     <script src="options.js"></script>
 </html>

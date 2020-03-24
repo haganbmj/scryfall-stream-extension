@@ -3,21 +3,31 @@
     "name": "scryfall-stream-extension",
     "short_name": "Scryfall-Stream",
     "description": "Provides Magic broadcasters the ability to display card graphics on screen.",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "author": "Brendan Hagan (haganbmj)",
+    "icons": {
+        "48": "icon/icon48-2.png",
+        "96": "icon/icon96-2.png"
+    },
     "applications": {
         "gecko": {
-            "id": "scryfall-stream-extension"
+            "id": "{0afa4b8b-ce93-422c-a915-3e97857b9027}"
         }
     },
-    "icons": {
-        "48": "icon/icon48.png"
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{0afa4b8b-ce93-422c-a915-3e97857b9027}"
+        }
     },
     "content_scripts": [{
         "matches": [
-            "*://scryfall.com/**"
+            "*://*.scryfall.com/*"
+        ],
+        "exclude_globs": [
+            "*://api.scryfall.com/*"
         ],
         "js": [
+            "browser-polyfill.min.js",
             "scryfall-stream-extension.client.js"
         ],
         "css": [
@@ -27,7 +37,8 @@
     }],
     "browser_action": {
         "default_icon": {
-            "48": "icon/icon48.png"
+            "48": "icon/icon48-2.png",
+            "96": "icon/icon96-2.png"
         },
         "default_title": "Show panel",
         "browser_style": true,
@@ -36,12 +47,11 @@
 
     "options_ui": {
         "page": "options.html",
-        "chrome_style": true
+        "chrome_style": false
     },
     "permissions": [
         "storage",
-        "http://localhost/*",
-        "https://streamsgood.com/*"
+        "*://*.streamsgood.com/*"
     ],
-    "content_security_policy": "script-src 'self' http://localhost/*; object-src 'self'"
+    "content_security_policy": "script-src 'self'; object-src 'self'"
 }

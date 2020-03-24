@@ -67,6 +67,10 @@ app.post('/set', (req, res) => {
     return res.status(200).json({"message": "ok"});
 });
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
 app.get('/room/:id', (req, res) => {
     const { id } = req.params;
     res.render('room', { id });
