@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="/styles/room.css">
     </head>
     <body>
-        <img id="card" src="">
+        <img id="card" src="" class="fitscreen">
     </body>
     <script>
         const cardElement = document.querySelector('#card');
@@ -20,9 +20,9 @@
             cardElement.src = data;
         });
 
-        document.querySelector('#card').addEventListener('click', e => {
-            e.preventDefault();
-            document.querySelector('#card').classList.toggle('fitscreen');
-        });
+        // document.querySelector('#card').addEventListener('click', e => {
+        //     e.preventDefault();
+        //     document.querySelector('#card').classList.toggle('fitscreen');
+        // });
     </script>
 </html>
