@@ -27,6 +27,7 @@ app.use(morgan('combined'));
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', './views');
+app.disable('view cache');
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);

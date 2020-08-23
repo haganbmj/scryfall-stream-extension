@@ -3,7 +3,7 @@
     "name": "scryfall-stream-extension",
     "short_name": "Scryfall-Stream",
     "description": "Provides Magic broadcasters the ability to display card graphics on screen.",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "author": "Brendan Hagan (haganbmj)",
     "icons": {
         "48": "icon/icon48-2.png",
@@ -27,7 +27,7 @@
             "*://api.scryfall.com/*"
         ],
         "js": [
-            "browser-polyfill.min.js",
+            "browser-polyfill.js",
             "scryfall-stream-extension.client.js"
         ],
         "css": [

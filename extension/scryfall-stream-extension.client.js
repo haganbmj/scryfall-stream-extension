@@ -55,7 +55,7 @@ const showScryfallStream = url => {
     scryfallStreamButton.style.display = 'block';
 };
 
-const images = document.querySelectorAll(`img[src*="img.scryfall.com/cards/"], img[data-src*="img.scryfall.com/cards/"]`);
+const images = document.querySelectorAll(`img[src*="c1.scryfall.com/file/scryfall-cards/"], img[data-src*="c1.scryfall.com/file/scryfall-cards/"]`);
 
 images.forEach(element => {
     let jpgUrl = element.src;
@@ -64,7 +64,7 @@ images.forEach(element => {
         jpgUrl = element.attributes['data-src'].value;
     }
 
-    // ex: https://img.scryfall.com/cards/normal/en/jou/30.jpg?1517813031
+    // ex: https://c1.scryfall.com/file/scryfall-cards/large/front/3/6/367a67c7-54db-4336-b55a-3fa27625172a.jpg?1562876432
     const pngUrl = jpgUrl
         .replace('/normal/', '/png/')
         .replace('/large/', '/png/')
