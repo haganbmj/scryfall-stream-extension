@@ -59,7 +59,8 @@ app.post('/set', (req, res) => {
         return res.status(400).json({"message": "invalid"});
     }
 
-    if (!url.match(/^(https?:\/\/(.+?\.)?img\.scryfall\.com(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/)) {
+    // https://c1.scryfall.com/file/scryfall-cards/large/front/7/d/7d6ace1f-c056-494d-a41f-75efa54312a5.jpg?1598135337
+    if (!url.match(/^(https?:\/\/(.+?\.)?c1\.scryfall\.com(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/)) {
         return res.status(422).json({"message": "not a scryfall url"});
     }
 
